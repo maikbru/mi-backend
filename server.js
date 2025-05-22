@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
 const pool = mysql.createPool({
   host: process.env.HOST || 'maglev.proxy.rlwy.net',
   user: process.env.MYSQLUSER || 'root',
-  password: process.env.PASSWORD || '',
+  password: process.env.PASSWORD || 'wMFnqjWXyHvPZsFxEtAoxoZuUKbhOTBt',
   database: process.env.DATABASE || 'railway',
   port: process.env.MYSQL_PORT ? parseInt(process.env.MYSQL_PORT) : 57498,
   waitForConnections: true,
