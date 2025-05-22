@@ -7,7 +7,7 @@ const cors = require('cors');
 const mysql = require('mysql2'); // Importa el driver de MySQL
 const { v4: uuidv4 } = require('uuid');
 const app = express();
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
 const pool = mysql.createPool({
   host: process.env.HOST || 'maglev.proxy.rlwy.net',
   user: process.env.MYSQLUSER || 'root',
-  password: process.env.PASSWORD || 'wMFnqjWXyHvPZsFxEtAoxoZuUKbhOTBt',
+  password: process.env.PASSWORD || '',
   database: process.env.DATABASE || 'railway',
   port: process.env.MYSQL_PORT ? parseInt(process.env.MYSQL_PORT) : 57498,
   waitForConnections: true,
