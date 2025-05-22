@@ -7,7 +7,7 @@ const cors = require('cors');
 const mysql = require('mysql2'); // Importa el driver de MySQL
 const { v4: uuidv4 } = require('uuid');
 const app = express();
-const PORT = 3306;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,10 +20,11 @@ app.use((err, req, res, next) => {
 
 // Configuración de la conexión a MySQL
 const pool = mysql.createPool({
-  host: 'mysql-production-7007.up.railway.app', // Cambia esto a la dirección de tu servidor MySQL
-  user: 'root', // Cambia esto a tu nombre de usuario de MySQL
-  password: 'wMFnqjWXyHvPZsFxEtAoxoZuUKbhOTBt', // Cambia esto a tu contraseña de MySQL
-  database: 'gorefs_db_oficial', // Cambia esto al nombre de tu base de datos
+  host: process.env.HOST || 'localhost',
+  user: process.env.USER || 'root',
+  password: process.env.PASSWORD || '',
+  database: process.env.DATABASE || 'railway',
+  port: process.env.PORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
