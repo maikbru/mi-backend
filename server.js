@@ -23,7 +23,7 @@ const pool = mysql.createPool({
   host: process.env.HOST || 'maglev.proxy.rlwy.net',
   user: process.env.MYSQLUSER || 'root',
   password: process.env.PASSWORD || '',
-  database: process.env.DATABASE || 'railway',
+  database: process.env.MYSQLDATABASE || 'railway',
   port: process.env.MYSQL_PORT ? parseInt(process.env.MYSQL_PORT) : 57498,
   waitForConnections: true,
   connectionLimit: 10,
