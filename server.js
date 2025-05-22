@@ -20,7 +20,7 @@ app.use((err, req, res, next) => {
 
 // Configuración de la conexión a MySQL
 const pool = mysql.createPool({
-  host: process.env.HOST || 'localhost',
+  host: process.env.HOST || 'maglev.proxy.rlwy.net',
   user: process.env.MYSQLUSER || 'root',
   password: process.env.PASSWORD || '',
   database: process.env.DATABASE || 'railway',
