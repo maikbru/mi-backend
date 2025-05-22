@@ -21,7 +21,7 @@ app.use((err, req, res, next) => {
 // Configuración de la conexión a MySQL
 const pool = mysql.createPool({
   host: process.env.HOST || 'localhost',
-  user: process.env.USER || 'root',
+  user: process.env.MYSQLUSER || 'root',
   password: process.env.PASSWORD || '',
   database: process.env.DATABASE || 'railway',
   port: process.env.PORT || 3306,
@@ -231,7 +231,14 @@ app.get('/referidos', (req, res) => {
     }
   );
 });
-
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error('Error al conectar a MySQL:', err.message);
+  } else {
+    console.log('Conectado a la base de datos MySQL correctamente.');
+    connection.release();
+  }
+});
 app.post('/generate-referral', (req, res) => {
   const { userId, campaignId } = req.body;
 
