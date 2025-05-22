@@ -257,7 +257,7 @@ app.post('/generate-referral', (req, res) => {
         return res.status(500).json({ message: 'Error interno del servidor' });
       }
 
-      const referralUrl = `http://localhost:3001/scan?ref=${uniqueCode}`;
+      const referralUrl = `https://mi-backend-production-0fec.up.railway.app/scan?ref=${uniqueCode}`;
       res.status(200).json({ url: referralUrl });
     }
   );
@@ -281,7 +281,7 @@ app.get('/scan', (req, res) => {
       }
 
       // Redirigir a donde quieras (ej: página principal o de campaña)
-      res.redirect('http://localhost:3000/dashboard');
+      res.redirect('http://192.168.42.131:3000/dashboard');
     }
   );
 });
