@@ -24,7 +24,7 @@ const pool = mysql.createPool({
   user: process.env.MYSQLUSER || 'root',
   password: process.env.PASSWORD || '',
   database: process.env.DATABASE || 'railway',
-  port: process.env.PORT || 3306,
+  port: process.env.MYSQL_PORT ? parseInt(process.env.MYSQL_PORT) : 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
