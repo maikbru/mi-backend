@@ -97,7 +97,7 @@ const upload = multer({ storage });
 
 
 app.post('/creacampana', upload.single('image'), (req, res) => {
-  const { description, user_id } = req.body; // Ahora recibimos el user_id
+  const { description, user_id, target_referrals } = req.body; // ← Agregamos target_referrals
   const imageBuffer = req.file.buffer;
   const imageMimeType = req.file.mimetype;
 
@@ -106,8 +106,8 @@ app.post('/creacampana', upload.single('image'), (req, res) => {
   }
 
   pool.execute(
-    'INSERT INTO campana (image_data, image_type, description, user_id) VALUES (?, ?, ?, ?)',
-    [imageBuffer, imageMimeType, description, user_id],
+    'INSERT INTO campana (image_data, image_type, description, user_id, target_referrals) VALUES (?, ?, ?, ?, ?)',
+    [imageBuffer, imageMimeType, description, user_id, target_referrals || null], // ← incluimos el valor
     (err, results) => {
       if (err) {
         console.error('Error al insertar campaña:', err);
@@ -193,7 +193,7 @@ app.get('/campaign/:id', (req, res) => {
   const { id } = req.params;
 
   pool.execute(
-    'SELECT id, image_data, image_type, description, created_at, user_id FROM campana WHERE id = ?',
+    'SELECT id, image_data, image_type, description, created_at, user_id, target_referrals FROM campana WHERE id = ?',
     [id],
     (err, results) => {
       if (err) {
